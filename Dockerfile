@@ -9,8 +9,12 @@ ENV PYTHONDONTWRITEBYTECODE=1
 # Turns off buffering for easier container logging
 ENV PYTHONUNBUFFERED=1
 
+#Set the locale
 RUN apt update && apt dist-upgrade -y
 RUN apt install -y locales libc-bin locales-all
+RUN apt-get install -y build-essential libssl-dev libffi-dev python-dev
+RUN apt-get install -y default-mysql-client libmariadb-dev-compat libmariadb-dev 
+
 RUN sed -i '/pt_BR.UTF-8/s/^#//g' /etc/locale.gen \
   && locale-gen en_US en_US.UTF-8 pt_BR pt_BR.UTF-8 \
   && dpkg-reconfigure locales \
@@ -21,13 +25,14 @@ ENV LC_ALL pt_BR.UTF-8
 ENV LC_CTYPE pt_BR.UTF-8
 ENV LC_TIME pt_BR.UTF-8
 
-RUN apt-get install -y build-essential libssl-dev libffi-dev python-dev
-RUN apt-get install -y default-mysql-client libmariadb-dev-compat libmariadb-dev 
+# RUN dpkg-reconfigure locales
+
+# pip Update
+RUN /usr/local/bin/python -m pip install --upgrade pip
 
 # Install pip requirements
 COPY requirements.txt .
-
-RUN python -m pip install pip -U
+RUN pip install wheel
 RUN python -m pip install -r requirements.txt -U
 
 WORKDIR /home/userapp
