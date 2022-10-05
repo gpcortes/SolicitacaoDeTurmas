@@ -25,10 +25,15 @@ class Eixo(models.Model):
 
 class Curso(models.Model):
     id = models.IntegerField(primary_key=True)
-    curso = models.CharField(max_length=255, null=False, blank=False)
-    tipo_id = models.IntegerField(null=False, blank=False)
-    eixos_id = models.IntegerField(null=False, blank=False)
-    status = models.CharField(max_length=255, null=False, blank=False)
+    id_eixos = models.IntegerField(null=False, blank=False)
+    tipo = models.IntegerField(null=False, blank=False)
+    nome = models.CharField(max_length=100, null=False, blank=False)
+    descricao = models.CharField(max_length=100, null=False, blank=False)
+    cbo = models.CharField(max_length=100, null=False, blank=False)
+    nome_curto = models.CharField(max_length=100, null=False, blank=False)
+    id_classificacoes = models.IntegerField(null=False, blank=False)
+    id_sub_eixos = models.IntegerField(null=False, blank=False)
+    plano_curso_link = models.CharField(max_length=100, null=False, blank=False)
 
     def __str__(self):
         return self.curso
