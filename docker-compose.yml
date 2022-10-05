@@ -14,7 +14,5 @@ services:
       CAMUNDA_DOMAINS_DB: ${CAMUNDA_DOMAINS_DB}
       CAMUNDA_DOMAINS_PASS: ${CAMUNDA_DOMAINS_PASS}
 
-    volumes:
-      - ./src/db.sqlite3:/home/userapp/db.sqlite3:rw
     ports:
       - 8000:8000
