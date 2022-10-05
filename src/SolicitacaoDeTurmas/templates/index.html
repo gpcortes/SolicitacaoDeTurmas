@@ -1,0 +1,125 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+  <link rel="stylesheet" href="{% static '/style.css' %}">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href={% static "css/bootstrap.css" %} />
+  <link rel="stylesheet" href={% static "vendors/iconly/bold.css" %} />
+  <link rel="stylesheet" href={% static "vendors/perfect-scrollbar/perfect-scrollbar.css" %} />
+  <link rel="stylesheet" href={% static "vendors/bootstrap-icons/bootstrap-icons.css" %} />
+  <link rel="stylesheet" href={% static "css/app.css" %} />
+  <link rel="stylesheet" href={% static "extensions/simple-datatables/style.css" %} />
+  <link rel="stylesheet" href={% static "css/pages/simple-datatables.css" %} />
+
+  <style>
+    h4 {
+      color: #000000
+    }
+  </style>
+
+  <title>{% block title %}CETT - Centro de Educação, Trabalho e Tecnologia{% endblock %}</title>
+</head>
+
+<body>
+  <div id="app">
+    <div id="sidebar" class="active">
+      <div class="sidebar-wrapper active">
+        <div class="sidebar-header">
+          <div class="d-flex justify-content-between">
+            <div class="logo">
+              <a href="/"><img style="height: 120px;" src={% static "images/marca.svg" %} alt="Logo" srcset="" /></a>
+            </div>
+            <div class="toggler">
+              <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-menu">
+          <ul class="menu">
+            <li class="sidebar-item has-sub">
+              <a href="#" class="sidebar-link">
+                <i class="bi bi-hexagon-fill"></i>
+                <span>Processos</span>
+              </a>
+              <ul class="submenu">
+                <li class="submenu-item">
+                  <a href="/form">Solicitação de abertura de turmas</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <button class="sidebar-toggler btn x">
+          <i data-feather="x"></i>
+        </button>
+      </div>
+    </div>
+    <div id="main">
+      <header class="mb-3">
+        <a href="#" class="burger-btn d-block d-xl-none">
+          <i class="bi bi-justify fs-3"></i>
+        </a>
+      </header>
+
+      {% block content %}
+
+      {% endblock content %}
+
+    </div>
+  </div>
+
+  {% comment %} <div id="sidebar">
+    {% block sidebar %}
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/blog/">Blog</a></li>
+    </ul>
+    {% endblock %}
+  </div>
+
+  <div id="content">
+    {% block content %}{% endblock %}
+  </div> {% endcomment %}
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <script src={% static "js/bootstrap.bundle.min.js" %}></script>
+  <script src={% static "js/pages/dashboard.js" %}></script>
+  <script src={% static "js/main.js" %}></script>
+  <script src={% static "js/bootstrap.js" %}></script>
+  <script src={% static "js/app.js" %}></script>
+  <script src={% static "js/apagar_meta.js" %}></script>
+  <script src={% static "js/pages/simple-datatables.js" %}></script>
+  <script src={% static "vendors/perfect-scrollbar/perfect-scrollbar.min.js" %}></script>
+  <script src={% static "vendors/apexcharts/apexcharts.js" %}></script>
+  <script src={% static "extensions/simple-datatables/umd/simple-datatables.js" %}></script>
+
+  <script type="text/javascript">
+    $("#basicInput").change(function () {
+      const url = $('#Form').attr("data-funcoes-url");
+      setorId = $(this).val();
+
+      $.ajax({
+        url: url,
+        data: {
+          'basicInput': setorId
+        },
+        success: function (data) {
+          $("#qualificacoes_id_eixos").html(data);
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+version: '3.4'
+
+services:
+  solicitacaodeturmas:
+    image: solicitacaodeturmas
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      DJANGO_LOG_LEVEL: ${DJANGO_LOG_LEVEL}
+      CAMUNDA_DOMAINS_HOST: ${CAMUNDA_DOMAINS_HOST}
+      CAMUNDA_DOMAINS_PORT: ${CAMUNDA_DOMAINS_PORT}
+      CAMUNDA_DOMAINS_USER: ${CAMUNDA_DOMAINS_USER}
+      CAMUNDA_DOMAINS_DB: ${CAMUNDA_DOMAINS_DB}
+      CAMUNDA_DOMAINS_PASS: ${CAMUNDA_DOMAINS_PASS}
+
+    volumes:
+      - ./src/db.sqlite3:/home/userapp/db.sqlite3:rw
+    ports:
+      - 8000:8000
