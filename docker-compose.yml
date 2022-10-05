@@ -14,7 +14,7 @@ services:
       CAMUNDA_DOMAINS_DB: ${CAMUNDA_DOMAINS_DB}
       CAMUNDA_DOMAINS_PASS: ${CAMUNDA_DOMAINS_PASS}
     volumes:
-      - ./src/static:static:ro
+      - ./src/static:/home/userapp/static:ro
 
     ports:
       - 8000:8000
