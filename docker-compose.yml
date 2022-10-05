@@ -13,6 +13,8 @@ services:
       CAMUNDA_DOMAINS_USER: ${CAMUNDA_DOMAINS_USER}
       CAMUNDA_DOMAINS_DB: ${CAMUNDA_DOMAINS_DB}
       CAMUNDA_DOMAINS_PASS: ${CAMUNDA_DOMAINS_PASS}
+    volumes:
+      - src/static:static:ro
 
     ports:
       - 8000:8000
