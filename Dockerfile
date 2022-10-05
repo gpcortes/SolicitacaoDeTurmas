@@ -9,6 +9,7 @@ ENV PYTHONDONTWRITEBYTECODE=1
 # Turns off buffering for easier container logging
 ENV PYTHONUNBUFFERED=1
 
+RUN apt update && apt dist-upgrade -y
 RUN apt install -y locales libc-bin locales-all
 RUN sed -i '/pt_BR.UTF-8/s/^#//g' /etc/locale.gen \
   && locale-gen en_US en_US.UTF-8 pt_BR pt_BR.UTF-8 \
