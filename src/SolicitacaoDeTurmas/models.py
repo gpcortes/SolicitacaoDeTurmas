@@ -26,7 +26,8 @@ class Eixo(models.Model):
 
 class Curso(models.Model):
     id = models.IntegerField(primary_key=True)
-    id_eixos = models.ForeignKey(Eixo, on_delete=models.DO_NOTHING)
+    id_eixos = models.IntegerField(null=False, blank=False)
+    # id_eixos = models.ForeignKey(Eixo, on_delete=models.DO_NOTHING)
     tipo = models.IntegerField(null=False, blank=False)
     nome = models.CharField(max_length=100, null=False, blank=False)
     descricao = models.CharField(max_length=100, null=False, blank=False)
