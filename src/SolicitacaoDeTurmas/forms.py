@@ -43,7 +43,7 @@ class SolicitacaoDeTurmas(forms.ModelForm):
         self.helper.layout.append(
             FormActions(
                 Submit('save', 'Save changes', css_class='btn-primary'),
-                Submit('cancel', 'Cancel')
+                Submit('cancel', 'Cancel', css_class='btn-danger')
             )
         )
 
