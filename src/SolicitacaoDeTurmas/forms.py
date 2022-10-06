@@ -78,7 +78,7 @@ class SolicitacaoDeTurmas(forms.ModelForm):
         }
 
         widgets = {
-            'curso': forms.ChoiceWidget(Curso.objects.filter(id_eixos=30)),
+            'curso': forms.ChoiceField(Curso.objects.filter(id_eixos=30)),
             'previsao_inicio': DatePickerInput(),
             'previsao_fim': DatePickerInput(),
         }
