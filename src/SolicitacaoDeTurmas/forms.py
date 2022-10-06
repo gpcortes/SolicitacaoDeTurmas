@@ -48,7 +48,7 @@ class SolicitacaoDeTurmas(forms.ModelForm):
             FormActions(
                 Submit('save', 'Save changes', css_class='btn-primary'),
                 Button('cancel', 'Cancel', css_class='btn-danger'),
-                css_class='justify-content-end'
+                css_class='d-flex justify-content-end'
             )
         )
 
