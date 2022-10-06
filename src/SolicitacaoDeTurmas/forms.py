@@ -1,6 +1,6 @@
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Row, Column, Button
-from crispy_forms.bootstrap import FormActions, Container
+from crispy_forms.bootstrap import FormActions, Container, InlineCheckboxes
 from django import forms
 from .widgets import DatePickerInput
 from .models import SolicitacaoDeTurma
@@ -40,7 +40,9 @@ class SolicitacaoDeTurmas(forms.ModelForm):
                     Column('previsao_fim', css_class='form-group col-md-3 mb-0'),
                     css_class='form-row'
                 ),
-                Row('dias_semana', css_class='form-group col-md-3 mb-0'),
+                InlineCheckboxes(
+                    Row('dias_semana', css_class='form-group col-md-3 mb-0')
+                ),
                 Row('unidade_ensino', css_class='form-group col-md-6 mb-0'),
             )
         )
