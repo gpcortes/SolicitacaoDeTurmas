@@ -83,7 +83,6 @@ class SolicitacaoDeTurmas(forms.ModelForm):
         }
 
         widgets = {
-            'curso': forms.ChoiceField(),
             'previsao_inicio': DatePickerInput(),
             'previsao_fim': DatePickerInput(),
         }
