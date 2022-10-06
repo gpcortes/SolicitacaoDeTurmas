@@ -3,7 +3,7 @@ from crispy_forms.layout import Layout, Submit, Row, Column, Button
 from crispy_forms.bootstrap import FormActions, Container, InlineCheckboxes
 from django import forms
 from .widgets import DatePickerInput
-from .models import Escola, SolicitacaoDeTurma
+from .models import Escola, Curso, SolicitacaoDeTurma
 
 
 class SolicitacaoDeTurmas(forms.ModelForm):
@@ -39,19 +39,25 @@ class SolicitacaoDeTurmas(forms.ModelForm):
                 Column('previsao_fim', css_class='form-group col-md-3 mb-0'),
                 css_class='form-row'
             ),
-            Row(InlineCheckboxes('dias_semana'), css_class='form-group col-md-12 mb-0'),
+            Row(InlineCheckboxes('dias_semana'),
+                css_class='form-group col-md-12 mb-0'),
             Row('unidade_ensino', css_class='form-group col-md-6 mb-0'),
         )
         self.helper.layout.append(
-                FormActions(
-                    Submit('save', 'Save changes', css_class='btn-primary'),
-                    Button('cancel', 'Cancel', css_class='btn-danger'),
-                    css_class='d-flex justify-content-end'
-                )
+            FormActions(
+                Submit('save', 'Save changes', css_class='btn-primary'),
+                Button('cancel', 'Cancel', css_class='btn-danger'),
+                css_class='d-flex justify-content-end'
+            )
         )
         self.fields['escola'].queryset = Escola.objects.filter(tipo=0)
         self.fields['unidade_ensino'].queryset = Escola.objects.filter(tipo=2)
-        
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        self.fields['curso'] = Curso.objects.filter(id_eixos=30)
+        return context
+
     class Meta:
         model = SolicitacaoDeTurma
 
