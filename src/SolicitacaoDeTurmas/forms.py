@@ -39,7 +39,7 @@ class SolicitacaoDeTurmas(forms.ModelForm):
                 Column('previsao_fim', css_class='form-group col-md-3 mb-0'),
                 css_class='form-row'
             ),
-            Row(InlineCheckboxes('dias_semana'), css_class='form-group col-md-3 mb-0'),
+            Row(InlineCheckboxes('dias_semana'), css_class='form-group col-md-6 mb-0'),
             Row('unidade_ensino', css_class='form-group col-md-6 mb-0'),
         )
         self.helper.layout.append(
