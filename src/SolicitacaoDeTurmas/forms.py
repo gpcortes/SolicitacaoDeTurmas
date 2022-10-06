@@ -72,19 +72,7 @@ class SolicitacaoDeTurmas(forms.ModelForm):
         )
 
         labels = {
-            'escola': 'Escola',
-            'curso': 'Curso',
-            'eixo': 'Eixo',
-            'tipo': 'Tipo',
-            'modalidade': 'Modalidade',
-            'turno': 'Turno',
-            'carga_horaria': 'Carga horária',
-            'vagas': 'Vagas',
-            'fluxo_continuo': 'Fluxo contínuo',
-            'previsao_inicio': 'Previsão de inínio',
-            'previsao_fim': 'Previsão de fim',
-            'dias_semana': 'Dias da Semana',
-            # 'unidade_ensino': 'Nome da UDEPI',
+            'unidade_ensino': 'Nome da UDEPI',
         }
 
         widgets = {

@@ -21,8 +21,8 @@ class Eixo(models.Model):
         return self.nome
 
     class Meta:
-      managed = False
-      db_table = 'eixos'
+        managed = False
+        db_table = 'eixos'
 
 
 class Curso(models.Model):
@@ -36,18 +36,19 @@ class Curso(models.Model):
     nome_curto = models.CharField(max_length=100, null=False, blank=False)
     id_classificacoes = models.IntegerField(null=False, blank=False)
     id_sub_eixos = models.IntegerField(null=False, blank=False)
-    plano_curso_link = models.CharField(max_length=100, null=False, blank=False)
+    plano_curso_link = models.CharField(
+        max_length=100, null=False, blank=False)
 
     def __str__(self):
         return self.nome
 
     class Meta:
-      managed = False
-      db_table = 'qualificacoes'
+        managed = False
+        db_table = 'qualificacoes'
 
 
 class Escola(models.Model):
-  
+
     TIPO = (
         (0, 'EFG'),
         (1, 'COTEC'),
@@ -55,7 +56,7 @@ class Escola(models.Model):
         (3, 'CVT'),
         (4, 'Salas de Extensão'),
     )
-    
+
     id = models.IntegerField(primary_key=True)
     escola = models.CharField(max_length=255, null=False, blank=False)
     tipo = models.IntegerField(null=False, blank=False, choices=TIPO)
@@ -64,8 +65,8 @@ class Escola(models.Model):
         return self.escola
 
     class Meta:
-      managed = False
-      db_table = 'escolas'
+        managed = False
+        db_table = 'escolas'
 
 
 class SolicitacaoDeTurma(DefaultTable):
@@ -111,30 +112,37 @@ class SolicitacaoDeTurma(DefaultTable):
         ('SABADO', 'Sábado'),
     )
 
-    instace_id = models.CharField(max_length=40, null=True, blank=True)
-    escola = models.ForeignKey(Escola, on_delete=models.DO_NOTHING, related_name='EFG')
-    curso = models.ForeignKey(Curso, on_delete=models.DO_NOTHING)
-    eixo = models.ForeignKey(Eixo, on_delete=models.DO_NOTHING)
+    instace_id = models.CharField(
+        max_length=40, null=True, blank=True, verbose_name='ID da instância de processo')
+    escola = models.ForeignKey(
+        Escola, on_delete=models.DO_NOTHING, related_name='escola', verbose_name='Nome da escola')
+    curso = models.ForeignKey(
+        Curso, on_delete=models.DO_NOTHING, verbose_name='Curso')
+    eixo = models.ForeignKey(
+        Eixo, on_delete=models.DO_NOTHING, verbose_name='Eixo')
     tipo = models.CharField(max_length=255, null=False, blank=False,
-                            choices=TIPOS)
+                            choices=TIPOS, verbose_name='Tipo')
     modalidade = models.CharField(max_length=255, null=False, blank=False,
-                                  choices=MODALIDADES)
+                                  choices=MODALIDADES, verbose_name='Nome da UDEPI')
     turno = models.CharField(max_length=255, null=False, blank=False,
-                             choices=TURNOS)
-    carga_horaria = models.IntegerField(null=False, blank=False)
-    vagas = models.IntegerField(null=False, blank=False)
+                             choices=TURNOS, verbose_name='Turno')
+    carga_horaria = models.IntegerField(
+        null=False, blank=False, verbose_name='Carga horária')
+    vagas = models.IntegerField(null=False, blank=False, verbose_name='Vagas')
     fluxo_continuo = models.CharField(
-        max_length=255, null=False, blank=False, choices=SIM_NAO)
+        max_length=255, null=False, blank=False, choices=SIM_NAO, verbose_name='Fluxo contínuo')
     previsao_inicio = models.DateField(
-        max_length=255, null=False, blank=False)
-    previsao_fim = models.DateField(max_length=255, null=False, blank=False)
+        max_length=255, null=False, blank=False, verbose_name='Previsão de início')
+    previsao_fim = models.DateField(
+        max_length=255, null=False, blank=False, verbose_name='Previsão de fim')
     dias_semana = MultiSelectField(max_length=255, null=False, blank=False,
-                                   choices=DIAS_SEMANA)
-    unidade_ensino = models.ForeignKey(Escola, on_delete=models.DO_NOTHING, related_name='UDEPI', verbose_name='Nome da UDEPI')
+                                   choices=DIAS_SEMANA, verbose_name='Dias da semana')
+    unidade_ensino = models.ForeignKey(
+        Escola, on_delete=models.DO_NOTHING, related_name='unidade_ensino', verbose_name='Unidade de ensino')
 
     def __str__(self) -> str:
         return super().__str__()
 
     class Meta:
-      managed = True
-      db_table = 'solicitacaodeturma'
+        managed = True
+        db_table = 'solicitacaodeturma'
