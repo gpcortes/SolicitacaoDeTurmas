@@ -41,10 +41,10 @@ class SolicitacaoDeTurmas(forms.ModelForm):
             Row('unidade_ensino', css_class='form-group col-md-6 mb-0'),
         )
         self.helper.layout.append(
-          FormActions(
-              Submit('save', 'Save changes', css_class='btn-primary'),
-            Button('cancel', 'Cancel')
-          )
+            FormActions(
+                Submit('save', 'Save changes', css_class='btn-primary'),
+                Submit('cancel', 'Cancel')
+            )
         )
 
     class Meta:
