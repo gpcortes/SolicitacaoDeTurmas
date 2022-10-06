@@ -123,7 +123,7 @@ class SolicitacaoDeTurma(DefaultTable):
     tipo = models.CharField(max_length=255, null=False, blank=False,
                             choices=TIPOS, verbose_name='Tipo')
     modalidade = models.CharField(max_length=255, null=False, blank=False,
-                                  choices=MODALIDADES, verbose_name='Nome da UDEPI')
+                                  choices=MODALIDADES, verbose_name='Modalidade')
     turno = models.CharField(max_length=255, null=False, blank=False,
                              choices=TURNOS, verbose_name='Turno')
     carga_horaria = models.IntegerField(
