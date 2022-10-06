@@ -112,7 +112,7 @@ class SolicitacaoDeTurma(DefaultTable):
     )
 
     instace_id = models.CharField(max_length=40, null=True, blank=True)
-    escola = models.ForeignKey(Escola, on_delete=models.DO_NOTHING)
+    escola = models.ForeignKey(Escola, on_delete=models.DO_NOTHING, related_name='EFG')
     curso = models.ForeignKey(Curso, on_delete=models.DO_NOTHING)
     eixo = models.ForeignKey(Eixo, on_delete=models.DO_NOTHING)
     tipo = models.CharField(max_length=255, null=False, blank=False,
@@ -130,7 +130,7 @@ class SolicitacaoDeTurma(DefaultTable):
     previsao_fim = models.DateField(max_length=255, null=False, blank=False)
     dias_semana = MultiSelectField(max_length=255, null=False, blank=False,
                                    choices=DIAS_SEMANA)
-    unidade_ensino = models.CharField(max_length=255, null=False, default="")
+    unidade_ensino = models.ForeignKey(Escola, on_delete=models.DO_NOTHING, related_name='UDEPI')
 
     def __str__(self) -> str:
         return super().__str__()

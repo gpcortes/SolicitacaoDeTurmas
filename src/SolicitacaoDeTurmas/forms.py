@@ -39,7 +39,7 @@ class SolicitacaoDeTurmas(forms.ModelForm):
                 Column('previsao_fim', css_class='form-group col-md-3 mb-0'),
                 css_class='form-row'
             ),
-            Row(InlineCheckboxes('dias_semana'), css_class='form-group col-md-6 mb-0'),
+            Row(InlineCheckboxes('dias_semana'), css_class='form-group col-md-12 mb-0'),
             Row('unidade_ensino', css_class='form-group col-md-6 mb-0'),
         )
         self.helper.layout.append(
@@ -50,6 +50,7 @@ class SolicitacaoDeTurmas(forms.ModelForm):
                 )
         )
         self.fields['escola'].queryset = Escola.objects.filter(tipo=0)
+        self.fields['unidade_ensino'].queryset = Escola.objects.filter(tipo=2)
         
     class Meta:
         model = SolicitacaoDeTurma
