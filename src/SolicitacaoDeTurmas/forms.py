@@ -10,9 +10,6 @@ class SolicitacaoDeTurmas(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(SolicitacaoDeTurmas, self).__init__(*args, **kwargs)
 
-        self.fields['curso'] = forms.ModelChoiceField(
-            queryset=Curso.objects.all()
-        )
         self.helper = FormHelper(self)
         self.helper.layout = Layout(
             Row(
@@ -81,7 +78,7 @@ class SolicitacaoDeTurmas(forms.ModelForm):
         }
 
         widgets = {
-            # 'cursos': forms.ModelChoiceField(),
+            'cursos': forms.ModelChoiceField(queryset=Curso.objects.filter(id_eixos=forms.fields['eixo'])),
             'previsao_inicio': DatePickerInput(),
             'previsao_fim': DatePickerInput(),
         }
