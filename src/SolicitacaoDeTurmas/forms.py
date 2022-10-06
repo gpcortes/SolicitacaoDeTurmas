@@ -1,5 +1,6 @@
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Row, Column, Button
+from crispy_forms.bootstrap import FormActions
 from django import forms
 from .widgets import DatePickerInput
 from .models import SolicitacaoDeTurma
@@ -38,12 +39,13 @@ class SolicitacaoDeTurmas(forms.ModelForm):
             ),
             Row('dias_semana', css_class='form-group col-md-3 mb-0'),
             Row('unidade_ensino', css_class='form-group col-md-6 mb-0'),
-            forms.FormActions(
-                Submit('save', 'Save changes'),
-                Button('cancel', 'Cancel')
-            ),
         )
-        # self.helper.layout.append()
+        self.helper.layout.append(
+          FormActions(
+              Submit('save', 'Save changes', css_class='btn-primary'),
+            Button('cancel', 'Cancel')
+          )
+        )
 
     class Meta:
         model = SolicitacaoDeTurma
