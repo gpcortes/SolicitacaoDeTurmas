@@ -130,7 +130,7 @@ class SolicitacaoDeTurma(DefaultTable):
     previsao_fim = models.DateField(max_length=255, null=False, blank=False)
     dias_semana = MultiSelectField(max_length=255, null=False, blank=False,
                                    choices=DIAS_SEMANA)
-    unidade_ensino = models.ForeignKey(Escola, on_delete=models.DO_NOTHING, related_name='UDEPI')
+    unidade_ensino = models.ForeignKey(Escola, on_delete=models.DO_NOTHING, related_name='UDEPI', verbose_name='Nome da UDEPI')
 
     def __str__(self) -> str:
         return super().__str__()

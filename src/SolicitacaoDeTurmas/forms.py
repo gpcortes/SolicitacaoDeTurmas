@@ -84,7 +84,7 @@ class SolicitacaoDeTurmas(forms.ModelForm):
             'previsao_inicio': 'Previsão de inínio',
             'previsao_fim': 'Previsão de fim',
             'dias_semana': 'Dias da Semana',
-            'unidade_ensino': 'Nome da UDEPI',
+            # 'unidade_ensino': 'Nome da UDEPI',
         }
 
         widgets = {
