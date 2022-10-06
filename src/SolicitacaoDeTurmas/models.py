@@ -1,3 +1,4 @@
+from email.policy import default
 from multiselectfield import MultiSelectField
 from django.db import models
 
@@ -25,7 +26,7 @@ class Eixo(models.Model):
 
 class Curso(models.Model):
     id = models.IntegerField(primary_key=True)
-    id_eixos = models.IntegerField(null=False, blank=False)
+    id_eixos = models.ForeignKey(Eixo, on_delete=models.DO_NOTHING)
     tipo = models.IntegerField(null=False, blank=False)
     nome = models.CharField(max_length=100, null=False, blank=False)
     descricao = models.CharField(max_length=100, null=False, blank=False)
@@ -117,6 +118,7 @@ class SolicitacaoDeTurma(DefaultTable):
     previsao_fim = models.DateField(max_length=255, null=False, blank=False)
     dias_semana = MultiSelectField(max_length=255, null=False, blank=False,
                                    choices=DIAS_SEMANA)
+    unidade_ensino = models.CharField(max_length=255, null=False, default="")
 
     def __str__(self) -> str:
         return super().__str__()

@@ -1,5 +1,5 @@
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Submit, Row, Column
+from crispy_forms.layout import Layout, Submit, Row, Column, Button
 from django import forms
 from .widgets import DatePickerInput
 from .models import SolicitacaoDeTurma
@@ -37,12 +37,18 @@ class SolicitacaoDeTurmas(forms.ModelForm):
                 css_class='form-row'
             ),
             Row('dias_semana', css_class='form-group col-md-3 mb-0'),
+            Row('unidade_ensino', css_class='form-group col-md-6 mb-0'),
         )
-        self.helper.layout.append(Submit('save', 'Salvar'))
-        
+        self.helper.layout.append(
+          forms.FormActions(
+            Submit('save', 'Save changes'),
+            Button('cancel', 'Cancel')
+          )
+        )
+
     class Meta:
         model = SolicitacaoDeTurma
-        
+
         fields = (
             'escola',
             'curso',
@@ -56,8 +62,9 @@ class SolicitacaoDeTurmas(forms.ModelForm):
             'previsao_inicio',
             'previsao_fim',
             'dias_semana',
+            'unidade_ensino',
         )
-        
+
         labels = {
             'escola': 'Escola',
             'curso': 'Curso',
@@ -71,9 +78,11 @@ class SolicitacaoDeTurmas(forms.ModelForm):
             'previsao_inicio': 'Previsão de inínio',
             'previsao_fim': 'Previsão de fim',
             'dias_semana': 'Dias da Semana',
+            'unidade_ensino': 'Nome UDEPI',
         }
-        
+
         widgets = {
+            # 'cursos': forms.ModelChoiceField(),
             'previsao_inicio': DatePickerInput(),
             'previsao_fim': DatePickerInput(),
         }
