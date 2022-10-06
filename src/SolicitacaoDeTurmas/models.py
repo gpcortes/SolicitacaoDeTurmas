@@ -115,7 +115,7 @@ class SolicitacaoDeTurma(DefaultTable):
     instace_id = models.CharField(
         max_length=40, null=True, blank=True, verbose_name='ID da instância de processo')
     escola = models.ForeignKey(
-        Escola, on_delete=models.DO_NOTHING, related_name='escola', verbose_name='Nome da escola')
+        Escola, on_delete=models.DO_NOTHING, related_name='escolas', verbose_name='Nome da escola')
     curso = models.ForeignKey(
         Curso, on_delete=models.DO_NOTHING, verbose_name='Curso')
     eixo = models.ForeignKey(
