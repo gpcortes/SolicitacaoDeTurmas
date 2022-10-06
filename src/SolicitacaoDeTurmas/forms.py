@@ -8,6 +8,9 @@ from .models import Escola, Curso, SolicitacaoDeTurma
 
 
 class SolicitacaoDeTurmas(forms.ModelForm):
+    
+    curso_teste = forms.ModelChoiceField(queryset=Curso.objects.filter(id_eixos=30))
+    
     def __init__(self, *args, **kwargs):
         super(SolicitacaoDeTurmas, self).__init__(*args, **kwargs)
 
@@ -51,10 +54,6 @@ class SolicitacaoDeTurmas(forms.ModelForm):
                 Button('cancel', 'Cancel', css_class='btn-danger'),
                 css_class='d-flex justify-content-end'
             )
-        )
-        teste = forms.CharField(widget=forms.Select, choices=Curso.objects.filter(id_eixos=30))
-        self.helper.layout.append(
-          teste
         )
         self.fields['escola'].queryset=Escola.objects.filter(tipo=0)
         self.fields['unidade_ensino'].queryset = Escola.objects.filter(tipo=2)
