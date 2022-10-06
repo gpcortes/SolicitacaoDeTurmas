@@ -9,6 +9,10 @@ from .models import Escola, Curso, SolicitacaoDeTurma
 class SolicitacaoDeTurmas(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(SolicitacaoDeTurmas, self).__init__(*args, **kwargs)
+
+        self.fields['curso'] = forms.ModelChoiceField(
+            queryset=Curso.objects.all()
+        )
         self.helper = FormHelper(self)
         self.helper.layout = Layout(
             Row(
@@ -52,11 +56,6 @@ class SolicitacaoDeTurmas(forms.ModelForm):
         )
         self.fields['escola'].queryset = Escola.objects.filter(tipo=0)
         self.fields['unidade_ensino'].queryset = Escola.objects.filter(tipo=2)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        self.fields['curso'] = Curso.objects.filter(id_eixos=30)
-        return context
 
     class Meta:
         model = SolicitacaoDeTurma
