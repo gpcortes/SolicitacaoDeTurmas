@@ -1,4 +1,5 @@
 from email.policy import default
+from secrets import choice
 from multiselectfield import MultiSelectField
 from django.db import models
 
@@ -46,8 +47,18 @@ class Curso(models.Model):
 
 
 class Escola(models.Model):
+  
+    TIPO = (
+        (0, 'EFG'),
+        (1, 'COTEC'),
+        (2, 'UDEPI'),
+        (3, 'CVT'),
+        (4, 'Salas de Extensão'),
+    )
+    
     id = models.IntegerField(primary_key=True)
     escola = models.CharField(max_length=255, null=False, blank=False)
+    tipo = models.IntegerField(null=False, blank=False, choices=TIPO)
 
     def __str__(self):
         return self.escola
@@ -95,7 +106,7 @@ class SolicitacaoDeTurma(DefaultTable):
         ('SEGUNDA', 'Segunda'),
         ('TERCA', 'Terça'),
         ('QUARTA', 'Quarta'),
-        ('QUINTA', 'Quint'),
+        ('QUINTA', 'Quinta'),
         ('SEXTA', 'Sexta'),
         ('SABADO', 'Sábado'),
     )

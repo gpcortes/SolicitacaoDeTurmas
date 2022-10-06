@@ -3,7 +3,7 @@ from crispy_forms.layout import Layout, Submit, Row, Column, Button
 from crispy_forms.bootstrap import FormActions, Container, InlineCheckboxes
 from django import forms
 from .widgets import DatePickerInput
-from .models import SolicitacaoDeTurma
+from .models import Escola, SolicitacaoDeTurma
 
 
 class SolicitacaoDeTurmas(forms.ModelForm):
@@ -43,15 +43,14 @@ class SolicitacaoDeTurmas(forms.ModelForm):
             Row('unidade_ensino', css_class='form-group col-md-6 mb-0'),
         )
         self.helper.layout.append(
-            Container(
                 FormActions(
                     Submit('save', 'Save changes', css_class='btn-primary'),
                     Button('cancel', 'Cancel', css_class='btn-danger'),
                     css_class='d-flex justify-content-end'
                 )
-            )
         )
-
+        self.fields['escola'].queryset = Escola.objects.filter(tipo=0)
+        
     class Meta:
         model = SolicitacaoDeTurma
 
@@ -84,7 +83,7 @@ class SolicitacaoDeTurmas(forms.ModelForm):
             'previsao_inicio': 'Previsão de inínio',
             'previsao_fim': 'Previsão de fim',
             'dias_semana': 'Dias da Semana',
-            'unidade_ensino': 'Nome UDEPI',
+            'unidade_ensino': 'Nome da UDEPI',
         }
 
         widgets = {
