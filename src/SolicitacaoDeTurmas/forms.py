@@ -8,9 +8,10 @@ from .models import Escola, Curso, SolicitacaoDeTurma
 
 
 class SolicitacaoDeTurmas(forms.ModelForm):
-    
-    curso_teste = forms.ModelChoiceField(queryset=Curso.objects.filter(id_eixos=30))
-    
+
+    curso_teste = forms.ModelChoiceField(
+        queryset=Curso.objects.filter(id_eixos=30))
+
     def __init__(self, *args, **kwargs):
         super(SolicitacaoDeTurmas, self).__init__(*args, **kwargs)
 
@@ -55,7 +56,12 @@ class SolicitacaoDeTurmas(forms.ModelForm):
                 css_class='d-flex justify-content-end'
             )
         )
-        self.fields['escola'].queryset=Escola.objects.filter(tipo=0)
+        self.helper.layout.append(
+            forms.ModelChoiceField(
+                queryset=Curso.objects.filter(id_eixos=30)
+            )
+        )
+        self.fields['escola'].queryset = Escola.objects.filter(tipo=0)
         self.fields['unidade_ensino'].queryset = Escola.objects.filter(tipo=2)
 
     class Meta:
