@@ -1,3 +1,4 @@
+from random import choices
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Row, Column, Button
 from crispy_forms.bootstrap import FormActions, Container, InlineCheckboxes
@@ -51,7 +52,11 @@ class SolicitacaoDeTurmas(forms.ModelForm):
                 css_class='d-flex justify-content-end'
             )
         )
-        self.fields['escola'].queryset = Escola.objects.filter(tipo=0)
+        teste = forms.CharField(widget=forms.Select, choices=Curso.objects.filter(id_eixos=30))
+        self.helper.layout.append(
+          teste
+        )
+        self.fields['escola'].queryset=Escola.objects.filter(tipo=0)
         self.fields['unidade_ensino'].queryset = Escola.objects.filter(tipo=2)
 
     class Meta:
@@ -78,7 +83,7 @@ class SolicitacaoDeTurmas(forms.ModelForm):
         }
 
         widgets = {
-            'curso': forms.ChoiceField(Curso.objects.filter(id_eixos=30)),
+            'curso': forms.ChoiceField(),
             'previsao_inicio': DatePickerInput(),
             'previsao_fim': DatePickerInput(),
         }
