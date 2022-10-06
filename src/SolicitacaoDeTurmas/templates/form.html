@@ -13,13 +13,13 @@
     </h4>
   </div>
 
-  {% comment %} <div class="card-body">
-    <div class="column"> {% endcomment %}
+  <div class="card-body">
+    <div class="column">
       <form class="form-control" action="{% url 'thanks' %}" method="post">
         {% csrf_token %}
         {% crispy form %}
       </form>
-    {% comment %} </div>
-  </div> {% endcomment %}
+    </div>
+  </div>
 </div>
 {% endblock content %}
