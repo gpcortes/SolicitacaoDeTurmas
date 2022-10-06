@@ -4,7 +4,7 @@ from crispy_forms.layout import Layout, Submit, Row, Column, Button
 from crispy_forms.bootstrap import FormActions, Container, InlineCheckboxes
 from django import forms
 from .widgets import DatePickerInput
-from .models import Escola, SolicitacaoDeTurma
+from .models import Curso, Escola, SolicitacaoDeTurma
 
 
 class SolicitacaoDeTurmas(forms.ModelForm):
@@ -48,14 +48,13 @@ class SolicitacaoDeTurmas(forms.ModelForm):
         )
         self.helper.layout.append(
             FormActions(
-                Submit('save', 'Save changes', css_class='btn-primary'),
-                Button('cancel', 'Cancel', css_class='btn-danger'),
+                Submit('save', 'Salvar', css_class='btn-primary'),
+                Button('cancel', 'Cancelar', css_class='btn-danger'),
                 css_class='d-flex justify-content-end'
             )
         )
         self.fields['escola'].queryset = Escola.objects.filter(tipo=0)
         self.fields['unidade_ensino'].queryset = Escola.objects.filter(tipo=2)
-        self.fields['teste'] = forms.ChoiceField(choices=(('ON', 'ON'),('OFF', 'OFF')))
 
     class Meta:
         model = SolicitacaoDeTurma
