@@ -38,13 +38,12 @@ class SolicitacaoDeTurmas(forms.ModelForm):
             ),
             Row('dias_semana', css_class='form-group col-md-3 mb-0'),
             Row('unidade_ensino', css_class='form-group col-md-6 mb-0'),
+            forms.FormActions(
+                Submit('save', 'Save changes'),
+                Button('cancel', 'Cancel')
+            ),
         )
-        self.helper.layout.append(
-          forms.FormActions(
-            Submit('save', 'Save changes'),
-            Button('cancel', 'Cancel')
-          )
-        )
+        # self.helper.layout.append()
 
     class Meta:
         model = SolicitacaoDeTurma
